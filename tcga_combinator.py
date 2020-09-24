@@ -84,13 +84,15 @@ with open(clipath,newline='') as csvfile:
                         for linee in optxtll:
                             linespp=linee.split()
                             if linespp[0]=='miRNA_ID': continue
-                            if float(linespp[2])==0:
+                            ##You can choose the data you need there RPKM or readcount
+                            expcol=2
+                            if float(linespp[expcol])==0:
                                 lstt.append(linespp[0])
-                                lstt2.append(float(linespp[2]))
+                                lstt2.append(float(linespp[expcol]))
                             else:
-                                ##input miRNA log2(rpkm)
+                                ##Default log2(rpkm)
                                 lstt.append(linespp[0])
-                                lstt2.append(math.log(float(linespp[2]),2))
+                                lstt2.append(math.log(float(linespp[expcol]),2))
                          ##write csv file 
                         if (operator.eq(lst,lstt))==False:
                             print("miRNAs label were different in different patient, should edit this program.")
