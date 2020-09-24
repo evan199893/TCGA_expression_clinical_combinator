@@ -41,7 +41,7 @@ clicol=input("Input the the column index which is you need in the clinical.csv:.
 
 with open(clipath,newline='') as csvfile:
     ##Product final miRNA survival csv file name, setting the location 
-    finalpath=input("Input your final product saving absolute path:..."+"\n"+"(Ex:/User/evan/GDCdata/[file name].csv)"+"\n")
+    finalpath=input("Input your final product saving absolute path:..."+"\n"+"(Ex:/Users/evan/GDCdata/[file name].csv)"+"\n")
     with open(finalpath,'w') as newcsv:
         rows=csv.reader(csvfile)
         c3writer=csv.writer(newcsv)
