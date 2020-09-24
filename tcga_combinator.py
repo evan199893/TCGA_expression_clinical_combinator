@@ -6,7 +6,8 @@ import operator
 
 filedict={}
 ##You need to download the metadata.cart.json on TCGA database and setting all correct.
-with open('/Volumes/256GB/safari download/metadata.cart.2020-09-23-2.json','r') as f:
+jsonpath=input("Input your metadata.cart.json file absolute path:..."+"\n")
+with open(jsonpath,'r') as f:
     out= json.loads(f.read())   
 time=len(out)
 print('Scaning metadata.json...')
@@ -17,7 +18,7 @@ for i in range(time):
    ##print(tcgasample)
    filedict[finame]=tcgasample
 ##Setting miRNA_Expression_Quantification directiory absolute path
-yourPath='/Users/evan/GDCdata/TCGA-DLBC/harmonized/Transcriptome_Profiling/miRNA_Expression_Quantification'
+yourPath=input("Input your Expression_Quantification txt file absolute path:..."+"\n"+"Example: /Users/evan/GDCdata/TCGA-DLBC/harmonized/Transcriptome_Profiling/miRNA_Expression_Quantification"+"\n")
 allFileList = os.listdir(yourPath)
 cou=0
 print("Start converting!")
@@ -34,15 +35,21 @@ print('Convert '+str(cou)+' samples!')
 
 allFileList2 = os.listdir(yourPath)
 ## clinical csv file absolute path.You need to download clinical csv file in advanced.
-with open('/Users/evan/GDCdata/TCGA-DLBC_Clinical.csvical.csv',newline='') as csvfile:
+clipath=input("Input your clinical.csv absolute path:..."+"\n")
+clicol=input("Input the the column index which is you need in the clinical.csv:..."+"\n")
+
+
+with open(clipath,newline='') as csvfile:
     ##Product final miRNA survival csv file name, setting the location 
-    with open('/Users/evan/GDCdata/dlbcmirnaexp.csv','w') as newcsv:
+    finalpath=input("Input your final product saving absolute path:..."+"\n"+"(Ex:/User/evan/GDCdata/[file name].csv)"+"\n")
+    with open(finalpath,'w') as newcsv:
         rows=csv.reader(csvfile)
         c3writer=csv.writer(newcsv)
+        
         for r in rows:
             ##delete alive
             ##Set the column index of 'days to death' of clinical csv
-            survival=r[45]
+            survival=r[int(clicol)]
             if survival=='NA': continue 
             if r[0]=='submitter_id':
                 ##Randomly chose mirna file build mirna label
