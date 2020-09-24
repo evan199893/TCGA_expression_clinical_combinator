@@ -7,4 +7,4 @@
 5. Setting the output file place at line #39.  
 6. The miRNA/gene expression default is RPKM and take log2 in advanced if you don't need that or you need the read count you can change the defaul by yourself.(Line #88, 95)
 7. I update the program to the user input mode. When you run the program it will ask you to input specific data file absolute path. 
-8. I upload a R script about dowaload the TCGA data. 
+8. I upload a R language program about dowaload the TCGA data.(TCGA-DLBC) 
